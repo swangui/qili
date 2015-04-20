@@ -1,0 +1,31 @@
+<include file="Public:header" />
+<h1>成员列表</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>编号</th>
+                    <th>用户名</th>
+                    <th>最后登录ip</th>
+                    <th>最后登录时间</th>
+                    <th>E-mail</th>
+                    <th>真实姓名</th>
+                    <th>状态</th>
+                </tr>
+                <volist name="list2" id="vo">
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.account}</td>
+                    <td>{$vo.last_login_ip} </td>
+                    <td>{$vo.last_login_time|toDate='Y-m-d H:i:s'}</td>
+                    <td>{$vo.email}</td>
+                    <td>{$vo.nickname}</td>
+                    <td>{$vo.status|getStatus}</td>
+                </tr>
+                </volist>
+            </table>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />

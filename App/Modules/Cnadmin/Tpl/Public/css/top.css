@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+body{font:12px/1.5 Tahoma,Helvetica,Arial,'SimSun',sans-serif;color:#fff;background:url("../images/bg.gif")}
+body,div,ul,li,a{padding:0;margin:0}
+ol,ul,ul li,div li{list-style-type:none}
+a{text-decoration:none}
+a:hover{color:#6C0}
+.container-fluid{ padding-top:25px}
+.nav li{float:left}
+.nav a:link,.nav a:visited{color:#fff}
+.nav li a{display:block;margin-right:15px;padding:0px;width:90px;line-height:30px;font-size:14px;text-align:center;}
+.nav li a:link,.nav li a:visited{color:#fff;background:#6C0;text-decoration:none}
+.nav li a:hover{color:#333;background: #fff;}

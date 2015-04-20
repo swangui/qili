@@ -1,0 +1,102 @@
+<include file="Public:header" />
+<include file="Public:baidu_ueditor" />
+<h1>添加栏目</h1>
+<div class="container-fluid">
+    <form id="form1" class="form-horizontal" method="post" action="{:U('Category/insert')}" enctype="multipart/form-data" role="form">
+        <div class="form-group">
+            <label class="col-lg-1 col-md-1 col-sm-2 control-label">选择模型</label>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <select name="modelname" class="form-control">
+                    <volist name="mdldata" id="vo">
+                        <if condition="$vo['table'] eq $current_modelname">
+                            <option value="{$vo['table']}" selected="selected">{$vo['name']}</option>
+                        <else />
+                        <option value="{$vo['table']}">{$vo['name']}</option>
+                        </if>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-1 col-md-1 col-sm-2 control-label">上级栏目</label>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <select name="pid" class="form-control">
+                    <option value="0">≡ 作为一级栏目 ≡</option>
+                    <volist name="list" id="vo">
+                        <if condition="$vo.id eq $current_pid">
+                            <option value="{$vo['id']}" selected="selected">
+                        <else />
+                            <option value="{$vo['id']}">
+                        </if>
+    
+                        <for start="1" end="$vo['level']">
+                        &nbsp;&nbsp;
+                        </for>
+                        <if condition="$vo['level'] gt 1">
+                        ├&nbsp;
+                        </if>
+                        {$vo['title']}
+                        </option>
+                    </volist> 
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="title" class="col-lg-1 col-md-1 col-sm-2 control-label">栏目标题</label>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <input type="text" id="title" name="title" class="form-control validate[required]">
+                <p class="help-block">title（栏目标题）针对搜索引擎设置的标题</p>
+            </div>
+        </div>        
+        <div class="form-group">
+            <label for="url" class="col-lg-1 col-md-1 col-sm-2 control-label">英文标题</label>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <input type="text" id="urlname" name="url" class="form-control validate[required]">
+                <p class="help-block">title（栏目URL）针对前台URL优化，如栏目名称：关于我们/about！</p>
+            </div>
+        </div>  
+        <div class="form-group">
+            <label for="keywords" class="col-lg-1 col-md-1 col-sm-2 control-label">关键字</label>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <input type="text" id="keywords" name="keywords" class="form-control">
+                <p class="help-block">meta keywords（内容关键词）关键字中间用半角逗号隔开！</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="col-lg-1 col-md-1 col-sm-2 control-label">描 述</label>
+            <div class="col-lg-7 col-md-6 col-sm-8">
+                <textarea id="description" name="description" class="form-control" rows="4"></textarea>
+                <p class="help-block">meta description（内容描述）针对搜索引擎设置的网页描述！</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-1 col-md-1 col-sm-2 control-label">状 态</label>
+            <div class="col-lg-6 col-md-5 col-sm-8">
+                <select name="status">                  
+                    <option value="1" selected="selected">显示</option>
+                    <option value="0">不显示</option>
+                </select>
+                <p class="help-block">是否显示在导航条上面！</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="listorder" class="col-lg-1 col-md-1 col-sm-2 control-label">排 序</label>
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <input type="text" id="listorder" name="listorder" class="form-control validate[required,custom[onlyNumberSp]]" value="0" maxlength="5"> 
+                <p class="help-block">内容列表排列顺序，必须数字！</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="content" class="col-lg-1 col-md-1 col-sm-2 control-label">内 容</label>
+            <div class="col-lg-11 col-md-11 col-sm-10">
+               <textarea name="content" id="content"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-1 col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-lg btn-success col-lg-4 col-md-5 col-sm-2">提 交</button>
+            </div>
+        </div>
+    </form>
+</div>
+<include file="Public:footer" />

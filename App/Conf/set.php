@@ -1,0 +1,1 @@
+<?php	return array ( 'SITE_URL' => 'http://www.flower-from.us/', 'SITE_TITLE' => '上海仕辛商贸有限公司', 'SITE_KEYWORDS' => '永生花批发', 'SITE_DESCRIPTION' => '永生花批发', 'SITE_AUTHOR' => '杨涛', );?>

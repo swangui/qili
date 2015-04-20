@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>开复网站内容管理系统</title>
+<link rel="stylesheet" href="../Public/bootstrap/css/bootstrap.min.css" />
+<link rel='stylesheet' href="../Public/css/style.css" />
+<link rel='stylesheet' href="/Public/Validation/css/validationEngine.jquery.css" /> <!--表单字段验证-->
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="../Public/bootstrap/html5shiv.min.js"></script>
+  <script src="../Public/bootstrap/respond.min.js"></script>
+<![endif]-->
+<script src="../Public/js/jquery.min.js"></script>
+<script src="../Public/js/common.js"></script>
+<script src="../Public/bootstrap/js/bootstrap.min.js"></script>
+<script src="/Public/Validation/js/languages/jquery.validationEngine-zh_CN.js"></script> <!--表单字段验证-->
+<script src="/Public/Validation/js/jquery.validationEngine.min.js"></script> <!--表单字段验证-->
+<script src="../Public/js/formCheckError.js"></script> <!--表单错误验证输出提示信息-->
+<script>
+$(function(){
+	if($.browser.msie&&$.browser.version=="6.0"&&$("html")[0].scrollHeight>$("html").height())
+		$("html").css("overflowY","scroll");
+});
+//指定当前组模块URL地址 
+var URL = '__URL__'; // 百度Ueditor使用
+var SELF='__SELF__'; // Common.js使用
+var Public = "../Public/"; // 百度Ueditor页面editor_config.js使用
+var ID = "<?php echo $_GET['id'];?>"; ID = ID ? ID : ""; // 百度编辑器获取修改内容ID，上传图片使用
+</script>
+</head>
+<body>
+<!-- Small modal -->
+<div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" title="关闭"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="mySmallModalLabel">提示信息：</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

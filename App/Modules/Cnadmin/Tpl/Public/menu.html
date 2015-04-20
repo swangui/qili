@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=7">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>开复网站内容管理系统</title>
+<link rel='stylesheet' href="../Public/css/menu.css" />
+<base target="main" />
+</head>
+<body>
+<div id="sidebar">
+    <div class="logo"></div>
+    <div id="sidebar-wrapper"> <!-- Sidebar with logo and menu -->    
+    <if condition="($menuTitle eq '内容管理')">    			
+        <ul id="main-nav">  <!-- Accordion Menu -->
+            {$tree}    
+        </ul> <!-- End #main-nav -->
+    <elseif condition="($menuTitle eq '扩展功能')"/>
+        <p> 扩展功能（扩展标签）可以让用户自己制作页面标签，再填写好你的标签名称和标签代码后，系统为用户自动生成模板代码，只要把生成的模板代码复制粘贴在你的页面模板中，就可以灵活方便的展现你要的功能。
+        </p>
+    <else />
+        <ul id="main-nav">
+        <volist name="menu" id="item" >
+            <eq name="item['pid']" value="$menuTag">
+                <neq name="item['name']|strtolower" value="public" >
+                    <neq name="item['name']|strtolower" value="index" >
+                        <eq name="item['access']" value="1" >
+                        <li><a href="{:U($item['name'].'/index')}" class="nav-top-item">{$item['title']}</a></li>
+                        </eq>
+                    </neq>
+                </neq>
+            </eq>
+        </volist>
+        </ul>    
+    </if>
+    </div>
+</div>
+<script src="../Public/js/jquery.min.js"></script>
+<script src="../Public/js/simpla.jquery.configuration.js"></script>
+</body>
+</html>

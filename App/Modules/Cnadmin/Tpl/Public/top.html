@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>开复网站内容管理系统</title>
+<link rel="stylesheet" href="../Public/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../Public/css/top.css" />
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="../Public/bootstrap/html5shiv.min.js"></script>
+  <script src="../Public/bootstrap/respond.min.js"></script>
+<![endif]-->
+<base target="main" />
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-7">
+            <ul class="nav">
+                <li class="bgn">
+                    <a href="#" onClick="parent.menu.location='{:U('Public/menu',array('title'=>'内容管理'))}'; parent.main.location='{:U('Public/main')}'; return false;">
+                        <span class="glyphicon glyphicon-share-alt"></span>&nbsp;起始页
+                    </a>
+                </li>
+                <volist name="nodeGroupList" id="tag" key="k">
+                <li>
+                    <a href="#" onClick="parent.menu.location='{:U('Public/menu',array('tag'=>$key,'title'=>$tag))}'; return false;">
+                        <if condition="$k eq 1"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;<else /><span class="glyphicon glyphicon-wrench"></span>&nbsp;</if> {$tag}
+                    </a>
+                </li>
+                </volist>
+                <li>
+                    <a href="?g=cnadmin&m=clearcache&a=index" class="nav-top-item">
+                        <span class="glyphicon glyphicon-trash"></span>&nbsp;清除缓存
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-4 col-md-5 col-sm-5 info">
+            <div class="btn-group">
+            <a href="javascript:void(0)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-user"></span> {$Think.session.loginUserName}</a>
+            <a href="{:U('Public/password')}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-lock"></span>&nbsp;修改密码</a> 
+            <a href="{:U('Public/logout')}" class="btn btn-default btn-sm" target="_top"><span class="glyphicon glyphicon-arrow-up"></span>&nbsp;退 出</a>
+            <a href="__ROOT__/" target="_blank" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-home"></span>&nbsp;首 页</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+html{overflow-x :hidden}
+body{color:#fff;font:14px/1.5 Helvetica,Arial,sans-serif,'SimSun',sans-serif;background:url(../images/bg.gif)}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,{padding:0px;margin:0px}
+ol,ul,ul li,div{list-style:none;margin:0px;padding:0px}
+a{text-decoration:none;color:#fff}
+#sidebar{width:230px}
+#sidebar .logo{width:230px;height:80px;background:url(../images/logo.png) no-repeat 20px 20px}
+#sidebar p{margin:10px}
+#sidebar #sidebar-wrapper{margin:-8px 0px 0px 9px;margin-top: 0px \9}
+#sidebar #main-nav{width:206px;overflow:hidden;margin:0px 0px 0px 15px;}
+#sidebar #main-nav li a.nav-top-item{background:url('../images/bg-menu-item-green.gif') right center no-repeat;height:33px;line-height:33px;margin-bottom:10px;padding-left:40px;text-align:left;color:#fff;display:block;letter-spacing:0.1em;text-decoration:none}
+#sidebar #main-nav li a.current{background-image:url('../images/bg-menu-item-current.gif') !important;color:#333;font-weight:bold}
+#sidebar #main-nav li ul{margin:10px 0px 5px 0px}
+#sidebar #main-nav li ul li a{display:block;padding:5px 0px 5px 0px;padding-left:40px;line-height:1.2em}
+#sidebar #main-nav ul li a:hover,#sidebar #main-nav ul li a.current,#sidebar #main-nav ul li a.current:hover{color:#fff}
+.currents{font-weight:bold}

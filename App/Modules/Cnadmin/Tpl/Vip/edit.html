@@ -1,0 +1,75 @@
+<include file="Public:header" />
+<include file="Public:baidu_ueditor" />
+<h1>查看内容</h1>
+<div class="container-fluid">
+    <form id="form1" class="form-horizontal" method="post" action="{:U('Vip/update')}" enctype="multipart/form-data" role="form">
+        <input type="hidden" name="catid" value="{$vo.catid}">
+        <input type="hidden" name="id" value="{$vo.id}">
+        <table class="table table-bordered">
+            <tr>
+              <th class="col-sm-3">淘宝ID</th>
+              <td>{$vo.shopname}</td>
+            </tr>
+            <tr>
+              <th>姓 名</th>
+              <td>{$vo.contactperson}</td>
+            </tr>
+            <tr>
+              <th>电 话</th>
+              <td>{$vo.tel}</td>
+            </tr>
+            <tr>
+              <th>Q Q</th>
+              <td>{$vo.qq}</td>
+            </tr>
+            <tr>
+              <th>所在地区</th>
+              <td>{$vo.address}</td>
+            </tr>
+            <tr>
+              <th>经营时长</th>
+              <td>{$vo.businessage}</td>
+            </tr>
+            <tr>
+              <th>月平均采购额</th>
+              <td>{$vo.monthlyquota}</td>
+            </tr>
+            <tr>
+              <th>采购记录图片</th>
+              <td>
+                <notempty name="vo.transaction-img">
+                  <img src="__ROOT__/Uploads/{$vo.transaction-img}" name="img" width="150" height="300" /><br />
+                  <a href="{:U('Vip/download?',array('file'=>$vo['transaction-img']))}" title="下载图片">下载图片</a>
+                <else/>
+                  无
+                </notempty>
+              </td>
+            </tr>
+            <tr>
+              <th>店铺照片</th>
+              <td>
+                <notempty name="vo.shopimg">
+                  <img src="__ROOT__/Uploads/{$vo.shopimg}" name="img" width="150" height="300" /><br />
+                  <a href="{:U('Vip/download?',array('file'=>$vo['shopimg']))}" title="下载图片">下载图片</a>
+                <else/>
+                  无
+                </notempty>
+              </td>
+            </tr>
+            <tr>
+              <th>备注内容</th>
+              <td><textarea name="remarks" id="content">{$vo.remarks}</textarea></td>
+            </tr>
+            <tr>
+              <th>编辑时间</th>
+              <td>{$vo.update_time|toDate='Y-m-d H:i:s'}</td>
+            </tr>
+        </table>
+        <div class="form-group">
+            <div class="col-md-offset-1 col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-lg btn-success col-lg-4 col-md-5 col-sm-2">提 交</button>
+            </div>
+        </div>
+    </form>
+</div>
+<include file="Public:footer" />

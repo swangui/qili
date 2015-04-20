@@ -1,0 +1,17 @@
+<include file="Public:header" />
+<h1>起始页</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="title">网站信息</div>
+            <ul class="xt">
+                <li>当前版本</span>：开复网站内容管理系统v1.0</li>
+                <li>浏览统计：今日<span>【{$tjnum}】</span>次&nbsp;昨日<span>【{$tjnum1}】</span>次&nbsp;当月<span>【{$tjnum2}】</span>次</li>
+                <volist name="info" id="v">
+                <li>{$key}：{$v}</li>
+                </volist>
+            </ul>
+        </div>
+    </div>   
+</div>
+<include file="Public:footer" />

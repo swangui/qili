@@ -1,0 +1,45 @@
+<include file="Public:header" />
+<h1>内容列表</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <form class="form-inline" method="post" action="{:U('Other/index')}" role="form">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success" onclick="add()">添加内容</button>
+                    <button type="button" class="btn btn-danger" onclick="foreverdel()">删除内容</button>
+                    <input type="text" name="name" class="form-control btn btn-default">
+                    <button type="submit" class="btn btn-info">查 询</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th><input type="checkbox" id="check"></th>
+                    <th>编 号</th>
+                    <th>功能名称</th>
+                    <th>标签名称</th>
+                    <th>模板代码</th>
+                    <th>状 态</th>
+                    <th>操 作</th>
+                </tr>
+                <volist name="list" id="vo">
+                <tr>
+                    <td><input type="checkbox" name="key" value="{$vo.id}"></td>
+                    <td>{$vo.id}</td>
+                    <td><a href="{:U('Other/edit',array('id'=>$vo['id']))}" title="修 改">{$vo.setname|htmlspecialchars}</a></td>
+                    <td>{$vo.settag|htmlspecialchars}</td>
+                    <td title="复制模板代码，放在前台模板需要显示的地方">&lt;kaifu:other settag=&quot;{$vo.settag|htmlspecialchars}&quot; /&gt;</td>
+                    <td>{$vo['ifshow'] == 1 ?"显示":"关闭"}</td>
+                    <td><a href="{:U('Other/edit',array('id'=>$vo['id']))}" title="修 改">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{:U('Other/foreverdel',array('id'=>$vo['id']))}" onclick="foreverdel({$vo['id']}); return false;" title="删 除">删除</a></td>
+                </tr>
+                </volist>
+            </table>
+           {$page}
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />

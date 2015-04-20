@@ -1,0 +1,148 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="/Public/Validation/css/validationEngine.jquery.css">
+<script src="/Public/Validation/js/languages/jquery.validationEngine-zh_CN.js"></script><!--字段验证-->
+<script src="/Public/Validation/js/jquery.validationEngine.min.js"></script><!--字段验证-->
+<script src="/Public/cityselect/js/jquery.cityselect.js"></script>
+<script>
+$(function(){
+  $("#city").citySelect({
+	  prov:"上海", 
+	  city:"闵行区",
+	  nodata:"none"
+  }); 
+  // 表单验证
+  $("#vip-form").validationEngine({
+	    "promptPosition" : 'topLeft',
+		"showOneMessage" : true, // 是否只显示一个提示信息
+		"custom_error_messages" : {
+			"#inputId" : {
+				"required" : {
+				  "message" : "请填写您的淘宝ID！"
+				}
+			},
+			"#inputName" : {
+				"required" : {
+				 "message" : "请填写您的姓名！"
+				}
+			},
+			"#inputTel" : {
+				"required" : {
+				 "message" : "请填写您的电话！"
+				}
+			},
+			"#verify" : {
+				"required" : {
+				 "message" : "请填写验证码！"
+				}
+			}
+        }
+	});
+})
+// 验证码
+var URL = "/Public/verify/";
+//验证码
+function change_code(obj){
+	$("#code").attr("src",URL+Math.random());
+	return false;
+}
+</script>
+<div class="container vip">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>VIP会员申请表</h1>
+      <form id="vip-form" class="form-horizontal vip-form" name="vip-form" action="__URL__/insert" method="post" role="form" enctype="multipart/form-data">
+        <input type="hidden" name="catid" value="{$data.id}">
+        <div class="form-group">
+          <label for="inputId" class="col-sm-2 control-label">* 淘宝ID</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control validate[required]" name="shopname" id="inputId" placeholder="淘宝ID" maxlength="30">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputName" class="col-sm-2 control-label">* 姓 名</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control validate[required]" name="contactperson" id="inputName" placeholder="姓名" maxlength="20">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputTel" class="col-sm-2 control-label">* 电 话</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control validate[required]" name="tel" id="inputTel" placeholder="电话" maxlength="20">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputQQ" class="col-sm-2 control-label">Q&nbsp;&nbsp;&nbsp;Q</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="qq" id="inputQQ" placeholder="Q Q">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">所在地区</label>
+          <div id="city" class="col-sm-10">
+            <select name="province" class="prov input-sm"></select> 
+            <select name="city" class="city input-sm" disabled="disabled"></select>
+            <select name="district" class="dist input-sm" disabled="disabled"></select>
+		  </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">经营时长</label>
+          <div class="col-sm-10">
+            <label class="radio-inline">
+              <input type="radio" name="businessage" id="inlineRadio1" value="筹备中" checked="checked"> 筹备中
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="businessage" id="inlineRadio2" value="3个月以下"> 3个月以下
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="businessage" id="inlineRadio3" value="1年以下"> 1年以下
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="businessage" id="inlineRadio3" value="1年以上"> 1年以上
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputMonthlyquota" class="col-sm-2 control-label">月平均采购额</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="monthlyquota" id="inputMonthlyquota" placeholder="月平均采购额" maxlength="20">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="transaction-img" class="col-sm-2 control-label">采购记录图片</label>
+          <div class="col-sm-10">
+            <input type="file" name="transaction-img" id="transaction-img" accept="image/jpeg,image/jpg,image/png,image/gif">
+            <p class="help-block">* 图片大小：<= 2M，图片类型：jpg/gif/png！</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="shopimg" class="col-sm-2 control-label">店铺照片</label>
+          <div class="col-sm-10">
+            <input type="file" name="shopimg" id="shopimg" accept="image/jpeg,image/jpg,image/png,image/gif">
+            <p class="help-block">* 图片大小：<= 2M，图片类型：jpg/gif/png！</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="verify" class="col-sm-2 control-label">验证码</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control validate[required]" name="verify" id="verify" placeholder="验证码" maxlength="4">
+          </div>
+          <div class="col-sm-8">
+            <img src="{:U('Public/verify')}" id="code" onclick="change_code(this)" title="看不清楚，换一张！" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-10">
+            <p>* 号字段为必填字段！</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-lg btn-success btn-block">提 交</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<include file="Public:footer" />

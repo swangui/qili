@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>开复网站内容管理系统</title>
+<style>
+*{ padding:0; margin:0; font-size:12px}
+a:link,a:visited{text-decoration:none;color:#424242}
+a:hover,a:active{color:#ff6600;text-decoration: underline}
+.showMsg{  
+  zoom:1; width:450px; 
+  height:180px;
+  position:absolute;
+  left:50%;
+  top:44%;
+  margin:-87px 0 0 -225px;
+  box-shadow: 0 1px 5px #333;
+  -moz-box-shadow: 0 1px 5px #333;
+  -webkit-box-shadow: 0 1px 5px #333;
+  border: 1px solid #ccc \9; 
+}
+.showMsg h5{ 
+  padding-left:20px;
+  line-height:35px;
+  color:#fff;
+  font-size:14px;
+  text-align:left;
+  background: #690;
+}
+.showMsg .content{ 
+  padding-top:50px; 
+  padding-left:45px;
+  height:65px;
+  font-size:14px;
+  text-align:left
+}
+.showMsg .bottom{ 
+  background:#efefef;
+  line-height:30px;
+  text-align:center;
+}
+.showMsg .query{ background: url(../Public/images/msg_bg.png) no-repeat 0px -460px;}
+</style>
+</head>
+
+<body>
+<div class="showMsg" style="text-align:center">
+	<h5>提示信息</h5>
+    <present name="error" >
+    <div class="content query" style="display:inline-block;display:-moz-inline-stack;zoom:1;*display:inline;max-width:330px;">{$error}</div>
+    </present>
+    <div class="bottom">
+        <present name="jumpUrl" >
+            系统将在<span style="color:#424242;font-weight:bold">{$waitSecond}</span>秒后自动跳转，如果不想等待，请点击 <a href="{$jumpUrl}">这里返回</a>
+			<script>
+               setTimeout("location.href='{$jumpUrl}';",{$waitSecond}*1000);
+            </script>
+        </present>
+    </div>
+</div>
+</body>
+</html>

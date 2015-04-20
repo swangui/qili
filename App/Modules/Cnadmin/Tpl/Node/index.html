@@ -1,0 +1,32 @@
+<include file="Public:header" />
+<h1>菜单列表</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <form class="form-inline" role="form">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success" onclick="add()">添加菜单</button>
+                    <button type="button" class="btn btn-danger" onclick="foreverdel()">删除内容</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th><input type="checkbox" id="check"></th>
+                    <th>编 号</th>
+                    <th>菜单名称</th>
+                    <th>英文名称</th>
+                    <th>排 序</th>
+                    <th>状 态</th>
+                    <th>操 作</th>
+                </tr>
+               {$tree} 
+            </table>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />

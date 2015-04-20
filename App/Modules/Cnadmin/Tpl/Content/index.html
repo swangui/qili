@@ -1,0 +1,13 @@
+<include file="Public:header" />
+<include file="Public:baidu_ueditor" />
+<h1>编辑内容</h1>
+<div class="container-fluid">
+    <form id="form1" class="form-horizontal" method='post' action="{:U('Content/index')}"  enctype="multipart/form-data" role="form">
+        <textarea name="content" id="content">{$data.content}</textarea>
+        <input type="hidden" name="id" value="{$data.id}">
+        <button type="submit" class="btn btn-lg col-lg-4 col-md-4 col-sm-5 btn-success button">提 交</button>
+    </form>
+</div>
+<include file="Public:footer" />
+
+

@@ -1,0 +1,82 @@
+<include file="Public:header" />
+<h1>添加管理员</h1>
+<div class="container-fluid">
+    <form id="form1" class="form-horizontal" method="post" action="{:U('User/insert')}" enctype="multipart/form-data" role="form">
+        <div class="form-group">
+            <label for="account" class="col-lg-1 col-md-1 col-sm-2 control-label">用户名</label>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <input type="text" id="account" name="account" class="form-control validate[required]">
+                <p class="help-block error" id="accounterror" style="color:#F00">必须为英文字母！</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nickname" class="col-lg-1 col-md-1 col-sm-2 control-label">姓 名</label>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <input type="text" id="nickname" name="nickname" class="form-control validate[required]">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-lg-1 col-md-1 col-sm-2 control-label">密 码</label>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <input type="password" id="Upassword" name="password" class="form-control validate[required,minSize[6]]">
+                <p class="help-block">必须大于或等于6位数！</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="repassword" class="col-lg-1 col-md-1 col-sm-2 control-label">确认新密码</label>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <input type="password" id="repassword" name="repassword" class="form-control validate[required,equals[Upassword]]">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-1 col-md-1 col-sm-2 control-label left_label">权限组</label>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <select name="role_id"> 
+                    <volist name="list" id="l">
+                        <option value="{$l['id']}">
+                        {$l['name']}
+                        </option>
+                    </volist>    
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-lg-1 col-md-1 col-sm-2 control-label">邮 箱</label>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <input type="text" id="email" name="email" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-1 col-md-1 col-sm-2 control-label left_label">状 态</label>
+            <div class="col-lg-6 col-md-5 col-sm-8">
+                <select name="status">
+                    <option value="1">启用</option>
+                    <option value="0">禁用</option>
+                </select>
+            </div>
+        </div>        
+        <div class="form-group">
+            <label for="remark" class="col-lg-1 col-md-1 col-sm-2 control-label">备 注</label>
+            <div class="col-lg-5 col-md-5 col-sm-6">
+                <textarea id="remark" name="remark" class="form-control" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-1 col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-lg btn-success col-lg-4 col-md-5 col-sm-2">提 交</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+$(function(){
+	$("#account").blur(function(){
+		var account=$("#account").val();
+		$.post("{:U('User/checkAccount')}",{account:account}, function(result){
+			   $("#accounterror").html(result['info']);
+		},"JSON");
+		
+	});
+});
+</script>
+<include file="Public:footer" />
