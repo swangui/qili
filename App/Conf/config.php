@@ -5,7 +5,7 @@ return array(
 	'DEFAULT_GROUP'        => 'Home',        // 默认分组
 	'APP_GROUP_MODE'       => 1,             // 定义新版3.13独立分组
 	'APP_GROUP_PATH'       => 'Modules',     // 定义独立分组根文件夹
-	'URL_MODEL'            => 2,             // REWRITE模式,该URL模式和PATHINFO模式功能一样，除了可以不需要在URL里面写入口文件，和可以定义.htaccess文件
+	'URL_MODEL'            => 1,             // REWRITE模式,该URL模式和PATHINFO模式功能一样，除了可以不需要在URL里面写入口文件，和可以定义.htaccess文件
 	'TOKEN_ON'             => true,          // 开启表单令牌
 	'TOKEN_NAME'           => '__hash__',    // 表单令牌验证的表单隐藏字段名称
 	'DB_TYPE'              => 'mysql',       // 数据库类型

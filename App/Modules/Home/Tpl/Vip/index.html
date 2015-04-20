@@ -1,8 +1,8 @@
 <include file="Public:header" />
-<link rel="stylesheet" href="/Public/Validation/css/validationEngine.jquery.css">
-<script src="/Public/Validation/js/languages/jquery.validationEngine-zh_CN.js"></script><!--字段验证-->
-<script src="/Public/Validation/js/jquery.validationEngine.min.js"></script><!--字段验证-->
-<script src="/Public/cityselect/js/jquery.cityselect.js"></script>
+<link rel="stylesheet" href="/qili/Public/Validation/css/validationEngine.jquery.css">
+<script src="/qili/Public/Validation/js/languages/jquery.validationEngine-zh_CN.js"></script><!--字段验证-->
+<script src="/qili/Public/Validation/js/jquery.validationEngine.min.js"></script><!--字段验证-->
+<script src="/qili/Public/cityselect/js/jquery.cityselect.js"></script>
 <script>
 $(function(){
   $("#city").citySelect({
@@ -39,7 +39,7 @@ $(function(){
 	});
 })
 // 验证码
-var URL = "/Public/verify/";
+var URL = "/qili/Public/verify/";
 //验证码
 function change_code(obj){
 	$("#code").attr("src",URL+Math.random());

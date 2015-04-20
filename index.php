@@ -1,4 +1,5 @@
 <?php
+define('APP_CUSTOM_PATH','qili');
 define('APP_NAME','App');		   //定义项目名称
 define('APP_PATH','App/');		   //定义项目路径
 define('APP_DEBUG',true);

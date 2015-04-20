@@ -4,7 +4,7 @@
 
 		// 默认值
 		settings=$.extend({
-			url:"/Public/cityselect/js/city.min.js",
+			url:"/qili/Public/cityselect/js/city.min.js",
 			prov:null,
 			city:null,
 			dist:null,
