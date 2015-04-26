@@ -11,10 +11,9 @@ class VipAction extends CommonAction{
     }
     //过滤查询字段
     function _filter(&$map){
-        if(isset($_GET['catid'])){
+		if(isset($_GET['catid'])){
             $map['catid']=  array('eq',$_GET['catid']);
-        }
-        
+        }     
         $map['shopname'] = array('like',"%".$_POST['name']."%");
     }
     public function _before_index() {

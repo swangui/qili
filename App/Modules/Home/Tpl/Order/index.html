@@ -1,0 +1,184 @@
+<include file="Public:header" />
+<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+<div class="container order">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;商品预订</h1>
+      <form id="order-form" class="form-horizontal order-form" name="order-form" action="__URL__/insert" method="post" role="form" enctype="multipart/form-data">
+        <input type="hidden" name="catid" value="{$data.id}">
+        <div class="form-group">
+          <label for="inputId" class="col-sm-2 control-label">* 淘宝ID</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control validate[required]" name="shopname" id="inputId" placeholder="淘宝ID" maxlength="30">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputName" class="col-sm-2 control-label">* 姓名</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control validate[required]" name="name" id="inputName" placeholder="姓名" maxlength="20">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputTel" class="col-sm-2 control-label">* 电话</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control validate[required]" name="tel" id="inputTel" placeholder="电话" maxlength="20">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputQQ" class="col-sm-2 control-label">* Q&nbsp;Q</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control validate[required]" name="qq" id="inputQQ" placeholder="Q Q">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="order_name[]" class="col-sm-2 control-label">* 商品名称</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control validate[required]" name="order_name[]" id="order_name[]" placeholder="商品名称" maxlength="60">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="order_num" class="col-sm-2 control-label">* 数量</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control validate[required]" name="order_num[]" id="order_num[]" value="1" maxlength="10">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-10">
+            <button type="button" title="点击添加商品信息！" id="add-product">添加商品 <span class="glyphicon glyphicon-plus"></span></button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="content" class="col-sm-2 control-label">说明</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" rows="5" name="content" id="content"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="verify" class="col-sm-2 control-label">验证码</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control validate[required]" name="verify" id="verify" placeholder="验证码" maxlength="4">
+          </div>
+          <div class="col-sm-8">
+            <img src="{:U('Public/verify')}" id="code" onclick="change_code(this)" title="看不清楚，换一张！" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-10">
+            <p>* 号字段为必填字段！</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-lg btn-success btn-block">提 交</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="mySmallModalLabel">页面提示信息：</h4>
+      </div>
+      <div class="modal-body">
+        处理中，请稍等...
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<link rel="stylesheet" href="__PUBLIC__/Validation/css/validationEngine.jquery.css">
+<script src="__PUBLIC__/Validation/js/languages/jquery.validationEngine-zh_CN.js"></script><!--字段验证-->
+<script src="__PUBLIC__/Validation/js/jquery.validationEngine.min.js"></script><!--字段验证-->
+<script>
+$(function(){
+  // 表单验证
+  $("#order-form").validationEngine({
+	    "promptPosition" : 'topLeft',
+		"showOneMessage" : true, // 是否只显示一个提示信息
+        'ajaxFormValidation': true,
+		'ajaxFormValidationMethod':'post',
+		'onAjaxFormComplete':function(status, form, json, options){
+								 $('#order-form input,.btn').attr("disabled",true);
+								 $('.modal').modal();
+								 if(json[1] != 'ok'){
+									$('#order-form input,.btn').attr("disabled",false);
+									$('.modal-body').html(json[1]);	
+								 } else {
+									$('.modal-body').html('您提交的信息我们已经收到，我们会在3-5个工作日内给您回复，页面自动跳转，等待时间：<span id="wait">3</span>！');
+									 var wait = document.getElementById("wait");
+                                     var interval = setInterval(function(){
+										 var time = --wait.innerHTML;
+										 if(time <= 0) {
+											 location.href = "{$Think.config.SITE_URL}";
+											 clearInterval(interval);
+										 };
+								     }, 1000);							   
+								 }
+
+		                     },
+		"custom_error_messages" : {
+			"#inputId" : {
+				"required" : {
+				  "message" : "请填写您的淘宝ID！"
+				}
+			},
+			"#inputName" : {
+				"required" : {
+				 "message" : "请填写您的姓名！"
+				}
+			},
+			"#inputTel" : {
+				"required" : {
+				 "message" : "请填写您的电话！"
+				}
+			},
+			"#inputQQ" : {
+				"required" : {
+				 "message" : "请填写您的QQ！"
+				}
+			},
+			"#order_name[]" : {
+				"required" : {
+				 "message" : "请填写您的商品名称！"
+				}
+			},
+			"#order_num[]" : {
+				"required" : {
+				 "message" : "请填写您的商品数量！"
+				}
+			},
+			"#verify" : {
+				"required" : {
+				 "message" : "请填写验证码！"
+				}
+			}
+        }
+	});
+	// 添加商品
+	$("#add-product").click(function(){
+	    var content = '<div class="form-group"><label for="order_name[]" class="col-sm-2 control-label">* 商品名称</label><div class="col-sm-10"><input type="text" class="form-control validate[required]" name="order_name[]" id="order_name[]" placeholder="商品名称" maxlength="60"></div></div>';
+		content += '<div class="form-group"><label for="order_num" class="col-sm-2 control-label">* 数量</label><div class="col-sm-10"><input type="text" class="form-control validate[required]" name="order_num[]" id="order_num[]" value="1" maxlength="10"></div></div>';
+		content += '<div class="form-group"><div class="col-sm-2"></div><div class="col-sm-10"><button title="点击删除该商品信息！" onclick="delProduct(this)">删除商品</button></div></div>';
+		$(this).parent().parent().before(content);
+	});
+})
+// 删除商品
+function delProduct(my){
+	$(my).parent().parent().prev().remove();
+	$(my).parent().parent().prev().remove(); 
+	$(my).parent().parent().remove();
+}
+// 验证码
+var URL = "./Public/verify/";
+//验证码
+function change_code(obj){
+	$("#code").attr("src",URL+Math.random());
+	return false;
+}
+</script>
+<include file="Public:footer" />

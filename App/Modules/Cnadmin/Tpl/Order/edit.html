@@ -1,0 +1,64 @@
+<include file="Public:header" />
+<include file="Public:baidu_ueditor" />
+<h1>查看内容</h1>
+<div class="container-fluid">
+    <form id="form1" class="form-horizontal" method="post" action="{:U('Order/update')}" enctype="multipart/form-data" role="form">
+        <input type="hidden" name="catid" value="{$vo.catid}">
+        <input type="hidden" name="id" value="{$vo.id}">
+        <table id="show_table" class="table table-bordered">
+            <tr>
+              <th class="col-sm-2">淘宝ID</th>
+              <td colspan="3">{$vo.shopname}</td>
+            </tr>
+            <tr>
+              <th>姓 名</th>
+              <td colspan="2">{$vo.name}</td>
+            </tr>
+            <tr>
+              <th>电 话</th>
+              <td colspan="2">{$vo.tel}</td>
+            </tr>
+            <tr>
+              <th>Q Q</th>
+              <td colspan="2">{$vo.qq}</td>
+            </tr>
+            <tr>
+              <th rowspan="{$count}">商品信息</th>
+              <th style="text-align: left">名称</th>
+              <th  style="text-align: left">数量</th>
+            </tr>
+            <volist name="list" id="vo2">
+            <tr>
+              <td>{$vo2.order_name}</td>
+              <td>{$vo2.order_num}</td>
+            </tr>
+            </volist>
+            <tr>
+              <th>说 明</th>
+              <td colspan="3">{$vo.content}</td>
+            </tr>
+            <tr>
+              <th>操作人</th>
+              <td colspan="3"><input type="text" id="operation_people" class="form-control" name="operation_people"  value="{$vo.operation_people}"></td>
+            </tr>
+            <tr>
+              <th>审核结果</th>
+              <td colspan="3"><input type="text" id="audit_results" class="form-control" name="audit_results"  value="{$vo.audit_results}"></td>
+            </tr>          
+            <tr>
+              <th>备注内容</th>
+              <td colspan="3"><textarea name="remarks" id="content">{$vo.remarks}</textarea></td>
+            </tr>
+            <tr>
+              <th>编辑时间</th>
+              <td colspan="3">{$vo.update_time|toDate='Y-m-d H:i:s'}</td>
+            </tr>
+        </table>
+        <div class="form-group">
+            <div class="col-md-offset-1 col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-lg btn-success col-lg-4 col-md-5 col-sm-2">提 交</button>
+          </div>
+      </div>
+    </form>
+</div>
+<include file="Public:footer" />

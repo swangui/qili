@@ -49,3 +49,6 @@ label{font-weight: normal !important}
 /*----- Page -----*/
 .pagination a{color:#666 !important}
 .current,.pagination a:hover{background-color: #999 !important;color: #fff !important}
+/* ----- qili 表单 ----- */
+#show_table th {text-align: right;}
+#show_table td {padding-left: 10px;text-align: left;}

@@ -26,6 +26,7 @@ return array(
 	'URL_ROUTER_ON'        => true,          // 开启路由功能
 	'URL_ROUTE_RULES'      => array(
 		'/^vip-membership$/'          => 'Vip/index?id=1',  // VIP申请	
+		'/^pre-order$/'               => 'Order/index?id=2',  // 预订商品	
 		'/^cnadmin$/'                 => 'Cnadmin/Public/login', // 后台首页
 	),    	
 );

@@ -54,22 +54,3 @@ function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=true) {
 	}
 
 }
-
-
-// 发送邮件
-function sendmail($to,$subject,$body,$type){
-	require_once("Data/email.class.php");
-	$config = M("Set")->find();
-	$smtpserver = $config['mail_server'];                        // SMTP服务器
-	$smtpserverport =25;                                         // SMTP服务器端口
-	$smtpusermail = $config['mail_usermail'];                    // SMTP服务器的用户邮箱
-	$smtpuser = $config['mail_user'];                            // SMTP服务器的用户帐号
-	$smtppass = $config['mail_password'];                        // SMTP服务器的用户密码
-	$smtpemailto = ($type == 0) ? $config['mail_usermail'] : $to;// 发送给谁,0自已,1用户
-	$mailsubject = $subject;                                     // 邮件主题
-	$mailbody = $body;                                           // 邮件内容
-	$mailtype = "HTML";                                          // 邮件格式（HTML/TXT）,TXT为文本邮件
-	$smtp = new smtp($smtpserver,$smtpserverport,true,$smtpuser,$smtppass); // 这里面的一个true是表示使用身份验证,否则不使用身份验证.
-	$smtp->debug = false; // 是否显示发送的调试信息
-	$smtp->sendmail($smtpemailto, $smtpusermail, $mailsubject, $mailbody, $mailtype);
-}

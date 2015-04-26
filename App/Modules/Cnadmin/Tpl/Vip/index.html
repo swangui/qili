@@ -6,7 +6,7 @@
             <form class="form-inline" method="post" action="{:U('Vip/index')}" role="form">
                 <div class="btn-group">
                     <button type="button" class="btn btn-danger" onclick="foreverdel()">删除内容</button>
-                    <input type="text" name="name" class="form-control btn btn-default">
+                    <input type="text" name="name" class="form-control btn btn-default" placeholder="输入淘宝ID">
                     <input type="hidden" name="catid" value="{$catid}">
                     <button type="submit" class="btn btn-info">查 询</button>
                 </div>
@@ -28,7 +28,9 @@
                     <th>经营时长</th>
                     <th>月平均采购额</th>
                     <th>提交时间</th>
-                    <th>状 态</th>
+                    <th>操作人</th>
+                    <th>审核结果</th>
+                    <th>编辑时间</th>
                     <th>操 作</th>   
                 </tr>
                 <volist name="list" id="vo">
@@ -43,7 +45,9 @@
                     <td>{$vo.businessage}</td>
                     <td>{$vo.monthlyquota}</td>
                     <td>{$vo.create_time|toDate='Y-m-d'}</td>
-                    <td><if condition="$vo.ifshow == 0">X<else/>√</if></td>
+                    <td><if condition="$vo.operation_people == ''">无<else/>{$vo.operation_people}</if></td>
+                    <td><if condition="$vo.audit_results == ''">未核审<else/>{$vo.audit_results}</if></td><br />
+                    <td>{$vo.update_time|toDate='Y-m-d'}</td>
                     <td><a href="{:U('Vip/edit',array('id'=>$vo['id']))}" title="查 看">查看</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{:U('Vip/foreverdelete',array('id'=>$vo['id']))}" onclick="foreverdel({$vo['id']}); return false;" title="删 除">删除</a></td>
                 </tr>
                 </volist>

@@ -11,26 +11,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
   }
 }
-a:link,a:visited {color: #555;text-decoration: none;}
-a:hover { color: #000;text-decoration: underline;}
-ul{list-style-type: none;}
-img{
-  max-width: 100%;
-  width: auto \9 !important;
-  height: auto;
-}
-.theme-dropdown .dropdown-menu {
-  position: static;
-  display: block;
-  margin-bottom: 20px;
-}
-.theme-showcase > p > .btn { margin: 5px 0; }
-.theme-showcase .navbar .container { width: auto; }
-dt { font-weight: normal; }
-.clear { clear: left ;}
-/* 顶部 */
-/***** VIP 会员 *****/
-.vip-form { margin-top: 20px;}
 /***** 底部版权 *****/
 #footer {
   margin-top: 20px;
@@ -56,30 +36,25 @@ dt { font-weight: normal; }
 #ie-warning a:link,#ie-warning a:visited { color: #fff; }
 /* 超小屏幕（手机，小于 768px） */
 @media (max-width: 768px) {
-
+  .vip h1,.order h1 {
+    margin: 10px;
+	font-size: 24px;
+  }
+  .vip h1 span,.order h1 span { font-size: 20px;}
 }
 /* 小屏幕（平板，大于等于 768px） */
 @media (min-width: 768px) {
-  .vip-form {
+  .vip-form,.order-form {
 	padding: 30px;
 	border: 1px solid #ddd;
     -moz-border-radius: 5px;      /* Gecko browsers */
     -webkit-border-radius: 5px;   /* Webkit browsers */
     border-radius: 5px;            /* W3C syntax */
   }
-  .vip h1 {
+  .vip h1,.order h1 {
     margin: 30px;
 	font-size: 30px;
 	text-align: center;
   }
-  .vip-form-title { text-align: center;}
-  .vip-form-title legend { font-size: 30px;}
-}
-/* 中等屏幕（桌面显示器，大于等于 992px） */
-@media (min-width: 992px) {
-
-}
-/* 大屏幕（大桌面显示器，大于等于 1200px） */
-@media (min-width: 1200px) {
-
+  .vip h1 span,.order h1 span { font-size: 24px;}
 }

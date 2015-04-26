@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'errorcount', 2 => 'errorinterval', 3 => 'messageinterval', 4 => 'icon', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'int(11)', 'errorcount' => 'int(11)', 'errorinterval' => 'int(11)', 'messageinterval' => 'int(11)', 'icon' => 'varchar(80)', ), );?>

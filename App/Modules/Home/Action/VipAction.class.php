@@ -6,7 +6,7 @@ public function insert() {
 		$this->seo("页面提示信息", C(SITE_KEYWORDS), C(SITE_DESCRIPTION));
 		
 		if($_SESSION['verify'] != md5(strtolower($_POST['verify']))) {
-			$this->error('验证码输入错误，请重新填写验证码！');
+			$this->error('* 验证码输入错误，请重新填写验证码！');
         }
 
 		// 过滤数据
@@ -19,34 +19,16 @@ public function insert() {
 		$_POST['monthlyquota'] = $this->normalization($_POST['monthlyquota']);
 		
 		// 图片上传
-		if(is_uploaded_file($_FILES['transaction-img']['tmp_name'])){
-		    $shopimgType =  substr($_FILES['transaction-img']['type'],0,5);
-			if($shopimgType != 'image') {
-				$this->error('请确保您上传的采购记录图片类型格式为jpg/png/gif!');
-			}
+		if(is_uploaded_file($_FILES['transaction-img']['tmp_name']) || is_uploaded_file($_FILES['shopimg']['tmp_name'])){
 			$this->upload();
 		}
-		if(is_uploaded_file($_FILES['shopimg']['tmp_name'])) {
-		    $shopimgType =  substr($_FILES['shopimg']['type'],0,5);
-			if($shopimgType != 'image') {
-				$this->error('请确保您上传的店铺照片的类型为jpg/png/gif!');
-			}
-			$this->upload();
-		}
-		
 		$name = $this->getActionName();
 		$model = D($name);
 		
 		if(false !== $model->create()) {
 			if(false !== $model->add()) {
-				$subject = "您的网站有了新的提交信息！";
-				$shopname = I("post.shopname");
-				$contactperson = I("post.contactperson");
-				$tel = I("post.tel");
-				$body = "淘定ID：".$shopname."<br>姓名：".$contactperson."<br>电话：".$tel;
-				@sendmail('',$subject,$body,0); // 用户提交信息后邮件通知我
 				$message= "您提交的信息我们已经收到，我们会在3-5个工作日内给您回复，祝您工作顺利！";
-				$this->success('恭喜留言成功，'.$message);
+				$this->success($message);
 			}else{
 				$this->error('提交失败，请联系管理员！');
 			}
@@ -79,7 +61,7 @@ public function insert() {
             //导入上传类
             $upload = new UploadFile();
             //设置上传文件类型
-            $upload->allowExts = explode(',', 'jpg,gif,png,jpeg');
+            $upload->allowExts = explode(',','jpg,gif,png,jpeg');
 			//设置上传文件的尺寸
 			$upload->imageMaxWidth = '5000';
 		    $upload->imageMaxHeight = '5000';

@@ -43,9 +43,6 @@ class SetAction extends CommonAction {
 				unset($_FILES['icon']['name']); // 消毁icon变量，避免logo上传报错！
 			}
 		}
-		if(is_uploaded_file($_FILES['logo']['tmp_name']) || is_uploaded_file($_FILES['weixin']['tmp_name'])){
-		    $this->_upload();
-		}
         
         $config = array(
             "SITE_URL"     => $_POST["SITE_URL"],

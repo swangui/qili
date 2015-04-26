@@ -36,7 +36,6 @@ body {
 </head>
 <body>
 <div class="container">
-{:U('Public/checkLogin')}
   <form id="form1" class="form-horizontal" role="form" method="post" action="{:U('Public/checkLogin')}">
     <div class="form-group">
       <label for="account" class="col-sm-3 control-label">用户名</label>
@@ -71,8 +70,7 @@ body {
 <script src="../Public/js/jquery.form.js"></script>
 <script src="../Public/bootstrap/js/bootstrap.min.js"></script> 
 <script>
-$(function(){
-  
+$(function(){  
   $('#account').focus();
   $("#verifyImg").click(function(){
       var time = Math.random();

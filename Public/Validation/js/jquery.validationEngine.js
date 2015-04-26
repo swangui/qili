@@ -13,6 +13,20 @@
  (function($) {
 
 	"use strict";
+	
+	/**
+	* 修复 IE8 以下不支持 indexOf，导致产生错误
+	*/
+	if (!Array.indexOf) {
+		Array.prototype.indexOf = function(obj) {
+			for (var i = 0; i < this.length; i++) {
+				if (this[i] == obj) {
+					return i;
+				}
+			}
+			return -1;
+		};
+	};
 
 	var methods = {
 
@@ -1842,25 +1856,25 @@
 					break;
 
 				case "centerRight":
-					promptTopPosition = fieldTop+4;
+					promptTopPosition = fieldTop;
 					marginTopSize = 0;
 					promptleftPosition= fieldLeft + field.outerWidth(true)+5;
 					break;
 				case "centerLeft":
-					promptleftPosition = fieldLeft - (promptElmt.width() + 2);
-					promptTopPosition = fieldTop+4;
+					promptleftPosition = fieldLeft - (promptElmt.outerWidth());
+					promptTopPosition = fieldTop;
 					marginTopSize = 0;
 					
 					break;
 
 				case "bottomLeft":
-					promptTopPosition = fieldTop + field.height() + 5;
+					promptTopPosition = fieldTop + field.outerHeight();
 					marginTopSize = 0;
 					promptleftPosition = fieldLeft;
 					break;
 				case "bottomRight":
 					promptleftPosition = fieldLeft + fieldWidth - 30;
-					promptTopPosition =  fieldTop +  field.height() + 5;
+					promptTopPosition =  fieldTop +  field.outerHeight();
 					marginTopSize = 0;
 					break;
 				case "inline":
@@ -2003,8 +2017,8 @@
 		focusFirstField:true,
 		// Show prompts, set to false to disable prompts
 		showPrompts: true,
-       // Should we attempt to validate non-visible input fields contained in the form? (Useful in cases of tabbed containers, e.g. jQuery-UI tabs)
-       validateNonVisibleFields: false,
+		// Should we attempt to validate non-visible input fields contained in the form? (Useful in cases of tabbed containers, e.g. jQuery-UI tabs)
+		validateNonVisibleFields: false,
 		// Opening box position, possible locations are: topLeft,
 		// topRight, bottomLeft, centerRight, bottomRight, inline
 		// inline gets inserted after the validated field or into an element specified in data-prompt-target
@@ -2060,16 +2074,16 @@
 		autoHideDelay: 10000,
 		// Fade out duration while hiding the validations
 		fadeDuration: 0.3,
-	 // Use Prettify select library
-	 prettySelect: false,
-	 // Add css class on prompt
-	 addPromptClass : "",
-	 // Custom ID uses prefix
-	 usePrefix: "",
-	 // Custom ID uses suffix
-	 useSuffix: "",
-	 // Only show one message per error prompt
-	 showOneMessage: false
+		// Use Prettify select library
+		prettySelect: false,
+		// Add css class on prompt
+		addPromptClass : "",
+		// Custom ID uses prefix
+		usePrefix: "",
+		// Custom ID uses suffix
+		useSuffix: "",
+		// Only show one message per error prompt
+		showOneMessage: false
 	}};
 	$(function(){$.validationEngine.defaults.promptPosition = methods.isRTL()?'topLeft':"topRight"});
 })(jQuery);

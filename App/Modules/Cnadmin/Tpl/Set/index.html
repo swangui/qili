@@ -36,36 +36,12 @@
                 <textarea id="SITE_DESCRIPTION" name="SITE_DESCRIPTION" class="form-control" rows="4">{$user_config.SITE_DESCRIPTION}</textarea>
                 <p class="help-block">meta description（内容描述）针对搜索引擎设置的网页描述！</p>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="logo" class="col-lg-1 col-md-1 col-sm-2 control-label">LOGO</label>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-            <notempty name="set.logo">
-                <img src="/Uploads/{$set.logo}" name="logo" width="100" height="50" />
-                <a href="javascript:void(0);" onclick="foreverdelthumb(this);" title="你确定要删除logo吗？">删除logo</a>            
-            <else/>
-                <input type="file" name="logo" id="logo" class="form-control validate[required]" />
-                <p class="help-block">图片格式：jpg/png/gif！</p>
-             </notempty>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="weixin" class="col-lg-1 col-md-1 col-sm-2 control-label">微信</label>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-            <notempty name="set.weixin">
-                <img src="/Uploads/{$set.weixin}" name="weixin" width="50" height="50" />
-                <a href="javascript:void(0);" onclick="foreverdelthumb(this);" title="你确定要删除微信图标吗？">删除微信</a>            
-            <else/>
-                <input type="file" name="weixin" id="weixin" class="form-control" />
-                <p class="help-block">图片格式：jpg/png/gif！</p>
-             </notempty>
-            </div>
-        </div>   
+        </div> 
         <div class="form-group icon">
            <label for="icon" class="col-lg-1 col-md-1 col-sm-2 control-label">ICON图标</label>
             <div class="col-lg-4 col-md-4 col-sm-6">
             <notempty name="set.icon">
-                <img src="/Uploads/{$set.icon}" name="icon" />
+                <img src="./Uploads/{$set.icon}" name="icon" />
                 <a href="javascript:void(0);" onclick="foreverdelthumb(this);" title="你确定要删除ICON图标吗？">删除ICON图标</a>
             <else/>
                 <input type="file" name="icon" id="icon" class="form-control validate[required]" />
@@ -95,32 +71,6 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="mail_server" class="col-lg-1 col-md-1 col-sm-2 control-label">SMTP服务器</label>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <input type="text" id="mail_server" name="mail_server" class="form-control validate[required]" value="{$set.mail_server}">
-                <p class="help-block">格式：smtp.qq.com！</p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="mail_usermail" class="col-lg-1 col-md-1 col-sm-2 control-label">邮箱地址</label>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <input type="text" id="mail_usermail" name="mail_usermail" class="form-control validate[required,custom[email]]" value="{$set.mail_usermail}">
-                <p class="help-block">格式：123@qq.com！</p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="mail_user" class="col-lg-1 col-md-1 col-sm-2 control-label">邮箱帐号</label>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <input type="text" id="mail_user" name="mail_user" class="form-control validate[required]" value="{$set.mail_user}">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="mail_password" class="col-lg-1 col-md-1 col-sm-2 control-label">邮箱密码</label>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <input type="password" id="mail_password" name="mail_password" class="form-control validate[required]" value="{$set.mail_password}">
-            </div>
-        </div>
-        <div class="form-group">
             <label for="mail_content" class="col-lg-1 col-md-1 col-sm-2 control-label">回复内容</label>
             <div class="col-lg-11 col-md-11 col-sm-10">
                <textarea name="mail_content" id="content">{$set.mail_content}</textarea>
@@ -138,15 +88,7 @@ function foreverdelthumb(cur){
     var nodename=$(cur).prev().attr('name');
     var url="{:U('Set/delfile',array('id'=>$set['id'],'file'=>'"+nodename+"'))}";
     $.get(url,function(){
-		var html='';
-		if(nodename == "logo") {
-		    html = '<input type="file" name="logo" id="logo" class="form-control validate[required]" /><p class="help-block">图片格式：jpg/png/gif！</p>';
-		}
-		else if(nodename == "weixin"){
-			html = '<input type="file" name="weixin" id="weixin" class="form-control" /><p class="help-block">图片格式：jpg/png/gif！</p>';
-		} else {
-		    html = '<input type="file" name="icon" id="icon" class="form-control validate[required]" /><p class="help-block">名称及后缀必须为：favicon.ico！</p>';
-		}
+		var html ='<input type="file" name="icon" id="icon" class="form-control validate[required]" /><p class="help-block">名称及后缀必须为：favicon.ico！</p>';
         $(cur).parent().html(html);
 	});
 }

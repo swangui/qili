@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'orderid', 2 => 'order_name', 3 => 'order_num', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'int(11)', 'orderid' => 'int(5)', 'order_name' => 'varchar(100)', 'order_num' => 'varchar(10)', ), );?>

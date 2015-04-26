@@ -5,9 +5,9 @@
     <form id="form1" class="form-horizontal" method="post" action="{:U('Vip/update')}" enctype="multipart/form-data" role="form">
         <input type="hidden" name="catid" value="{$vo.catid}">
         <input type="hidden" name="id" value="{$vo.id}">
-        <table class="table table-bordered">
+        <table id="show_table" class="table table-bordered">
             <tr>
-              <th class="col-sm-3">淘宝ID</th>
+              <th class="col-sm-2">淘宝ID</th>
               <td>{$vo.shopname}</td>
             </tr>
             <tr>
@@ -56,6 +56,14 @@
                 </notempty>
               </td>
             </tr>
+            <tr>
+              <th>操作人</th>
+              <td><input type="text" id="operation_people" class="form-control" name="operation_people"  value="{$vo.operation_people}"></td>
+            </tr>
+            <tr>
+              <th>审核结果</th>
+              <td><input type="text" id="audit_results" class="form-control" name="audit_results"  value="{$vo.audit_results}"></td>
+            </tr>          
             <tr>
               <th>备注内容</th>
               <td><textarea name="remarks" id="content">{$vo.remarks}</textarea></td>
